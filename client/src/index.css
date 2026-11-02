@@ -1,0 +1,176 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 6rem;
+  }
+  body {
+    @apply bg-ink-900 font-sans text-bone antialiased;
+  }
+  /* Subtle film grain across the whole site. */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 60;
+    opacity: 0.055;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  ::selection {
+    @apply bg-blood text-white;
+  }
+  :focus-visible {
+    @apply outline outline-2 outline-offset-2 outline-blood;
+  }
+  /* Helvetica Bold headlines, set tight like a Swiss poster. */
+  h1, h2, h3, h4 {
+    @apply font-display;
+    letter-spacing: -0.025em;
+  }
+  h1 {
+    letter-spacing: -0.035em;
+  }
+}
+
+@layer components {
+  .container-site {
+    @apply mx-auto w-full max-w-site px-4 sm:px-6 lg:px-8;
+  }
+  .kicker {
+    @apply font-sans text-kicker font-semibold uppercase;
+  }
+  .rule {
+    @apply border-t border-ink-600;
+  }
+  .rule-light {
+    @apply border-t border-ink-900/15;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-semibold uppercase tracking-[0.12em] transition-colors disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-red {
+    @apply btn bg-blood text-white hover:bg-blood-400;
+  }
+  .btn-light {
+    @apply btn bg-bone text-ink hover:bg-white;
+  }
+  .btn-ghost {
+    @apply btn border border-ink-500 text-bone hover:border-bone;
+  }
+  .btn-ghost-dark {
+    @apply btn border border-ink/30 text-ink hover:border-ink;
+  }
+  .btn-sm {
+    @apply px-3 py-1.5 text-xs;
+  }
+  .field {
+    @apply block w-full border border-ink-500 bg-ink-800 px-3 py-2.5 text-sm text-bone placeholder:text-ink-400 focus:border-bone focus:outline-none;
+  }
+  .field-error {
+    @apply border-blood-400;
+  }
+  .label {
+    @apply mb-1.5 block text-xs font-semibold uppercase tracking-[0.14em] text-ink-300;
+  }
+  .link-underline {
+    @apply underline decoration-blood decoration-2 underline-offset-4 hover:text-white;
+  }
+  .headline-hover {
+    @apply transition-colors group-hover:text-blood-400;
+  }
+  .paper {
+    @apply bg-bone text-ink;
+  }
+  .paper .headline-hover {
+    @apply group-hover:text-blood;
+  }
+  .stamp {
+    /* Distressed edge on the red hanko stamp. */
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cfilter id='r'%3E%3CfeTurbulence baseFrequency='.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -2.2 1.7'/%3E%3C/filter%3E%3Crect width='60' height='60' filter='url(%23r)'/%3E%3C/svg%3E");
+    mask-size: cover;
+  }
+}
+
+/* ---------- Article body ---------- */
+.article-body {
+  @apply font-serif text-[1.0625rem] leading-[1.75] text-bone/90 sm:text-[1.125rem];
+}
+.article-body > * + * {
+  margin-top: 1.4em;
+}
+.article-body > p:first-of-type:not(:has(em:only-child))::first-letter {
+  @apply float-left mr-2 mt-1 font-display text-[4.2rem] font-bold leading-[0.8] text-blood-400;
+}
+.article-body h2 {
+  @apply mt-14 font-display text-[1.9rem] font-semibold leading-tight text-white;
+}
+.article-body h3 {
+  @apply mt-10 font-display text-[1.4rem] font-semibold text-white;
+}
+.article-body h4 {
+  @apply mt-8 font-sans text-sm font-bold uppercase tracking-[0.14em] text-white;
+}
+.article-body a {
+  @apply text-white underline decoration-blood decoration-2 underline-offset-4 hover:text-blood-400;
+}
+.article-body blockquote {
+  @apply my-10 border-l-4 border-blood py-1 pl-6 font-display text-[1.5rem] font-bold leading-tight tracking-tight text-white sm:text-[1.8rem];
+}
+.article-body blockquote p {
+  margin: 0;
+}
+.article-body ul {
+  @apply list-disc pl-6 marker:text-blood;
+}
+.article-body ol {
+  @apply list-decimal pl-6 marker:font-sans marker:font-bold marker:text-blood;
+}
+.article-body li + li {
+  margin-top: 0.4em;
+}
+.article-body figure {
+  @apply my-10;
+}
+.article-body figure img,
+.article-body > img {
+  @apply w-full bg-ink-700 object-cover;
+}
+.article-body figcaption {
+  @apply mt-3 border-l-2 border-blood pl-3 font-sans text-sm leading-snug text-ink-300;
+}
+.article-body hr {
+  @apply mx-auto my-12 w-16 border-t-2 border-blood;
+}
+.article-body code {
+  @apply bg-ink-700 px-1.5 py-0.5 font-mono text-[0.9em];
+}
+.article-body pre {
+  @apply overflow-x-auto bg-ink-800 p-4 font-mono text-sm;
+}
+
+/* ---------- TipTap editor ---------- */
+.editor-surface .ProseMirror {
+  @apply min-h-[420px] px-5 py-6 outline-none;
+}
+.editor-surface .ProseMirror p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  @apply pointer-events-none float-left h-0 text-ink-400;
+}
+.editor-surface .ProseMirror figure.ProseMirror-selectednode {
+  @apply outline outline-2 outline-blood;
+}
+
+/* Hide scrollbars on horizontal rails while keeping them scrollable. */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  scrollbar-width: none;
+}
