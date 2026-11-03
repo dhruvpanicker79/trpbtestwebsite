@@ -1,0 +1,12 @@
+# Never send these to Vercel (local-only tools, data and secrets)
+.tools
+.mongo-data
+.claude
+node_modules
+**/node_modules
+client/dist
+server/uploads/*
+.env
+**/.env
+**/.env.atlas
+*.log

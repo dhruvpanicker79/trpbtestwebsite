@@ -1,0 +1,15 @@
+node_modules/
+.tools/
+.mongo-data/
+dist/
+.env
+.env.*
+!.env.example
+server/uploads/*
+!server/uploads/.gitkeep
+*.log
+.DS_Store
+.vscode/
+.idea/
+.claude/
+.vercel/
