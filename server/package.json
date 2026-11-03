@@ -2,11 +2,11 @@
   "name": "trpb-server",
   "version": "1.0.0",
   "private": true,
-  "description": "The Ronin's Playbook â€” Express + MongoDB API",
+  "description": "The Ronin's Playbook - Express + MongoDB API",
   "type": "module",
   "main": "src/server.js",
   "engines": {
-    "node": ">=18.18"
+    "node": "22.x"
   },
   "scripts": {
     "dev": "node --watch src/server.js",
